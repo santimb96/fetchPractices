@@ -1,3 +1,5 @@
+import {TIPOS} from './data.js';
+
 const APP = {
     /**
      * desde el mismo js se inicializa la app
@@ -28,31 +30,33 @@ const APP = {
         //si no es débil, se mostrará este mensaje hasta que se vuelva a proceder una comparación
         mostrarDebilidad.innerHTML = `${tuElemento} NO es débil frente a ${elementoComparar}`;
         //se importa el js externo y con la función module.LoQueHayaEnELJS, obtendremos sus propiedades
-        import ("./data.js").then(module => {
-            for (let i = 0; i < module.TIPOS.length; i++) {
+            for (let i = 0; i < TIPOS.length; i++) {
                 //si el elemento existe, entra en el if
-                if (module.TIPOS[i].tipo === tuElemento) {
-                    for (let j = 0; j < module.TIPOS[i].debilidad.length; j++) {
+                if (TIPOS[i].tipo === tuElemento) {
+                    for (let j = 0; j < TIPOS[i].debilidad.length; j++) {
                         //si en el elemento existe la debilidad con la que se compara, entra en el if
-                        if (module.TIPOS[i].debilidad[j] === elementoComparar) {
+                        if (TIPOS[i].debilidad[j] === elementoComparar) {
                             mostrarDebilidad.innerHTML = `${tuElemento} es débil frente a ${elementoComparar}`;
                             break;
                         }
                     }
                 }
             }
-        });
     },
     comprobarExistenciaTipo: function (tuElemento, elementoComparar) {
         let arr = [];
+        let booleano = null;
 
-        import ("./data.js").then(module => {
-            for (let i = 0; i < module.TIPOS.length; i++) {
-                arr.push(module.TIPOS[i].tipo);
+            for (let i = 0; i < TIPOS.length; i++) {
+                arr.push(TIPOS[i].tipo);
             }
-        });
 
-        return arr.indexOf(tuElemento) !== -1 && arr.indexOf(elementoComparar) !== -1;
+        if(arr.indexOf(tuElemento) !== -1 && arr.indexOf(elementoComparar) !== -1){
+            booleano = true;
+        }else{
+            booleano = false;
+        }
+        return booleano;
     }
 }
 APP.inicializarDatos();
