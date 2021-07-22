@@ -10,7 +10,13 @@ const APP = {
             let tuElemento = document.getElementById("tuElemento").value.toLowerCase();
             let elementoComparar = document.getElementById("elementoComparar").value.toLowerCase();
             //se pasan a la función que comprobará si es o no débil
-            this.comparar(tuElemento, elementoComparar);
+
+            if (this.comprobarExistenciaTipo(tuElemento, elementoComparar) === true) {
+                this.comparar(tuElemento, elementoComparar);
+            } else {
+                document.getElementById("mostrarDebilidad").innerHTML = 'NO EXISTE';
+            }
+
         }.bind(this));
     },
     /**
@@ -36,6 +42,17 @@ const APP = {
                 }
             }
         });
+    },
+    comprobarExistenciaTipo: function (tuElemento, elementoComparar) {
+        let arr = [];
+
+        import ("./data.js").then(module => {
+            for (let i = 0; i < module.TIPOS.length; i++) {
+                arr.push(module.TIPOS[i].tipo);
+            }
+        });
+
+        return arr.indexOf(tuElemento) !== -1 && arr.indexOf(elementoComparar) !== -1;
     }
 }
 APP.inicializarDatos();
