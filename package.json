@@ -1,0 +1,10 @@
+{
+  "name": "fetchPractices",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "node-fetch": "^2.6.1",
+    "puppeteer": "^10.1.0",
+    "youtube-dl-exec": "^1.2.4"
+  }
+}
